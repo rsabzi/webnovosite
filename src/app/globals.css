@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/* دسترس‌پذیری: نشانگر واضح فوکوس برای پیمایش با کیبورد.
+   با انتخاب‌گر پراختصاص نوشته شده تا حتی روی عناصری که focus:outline-none دارند هم دیده شود. */
+html :focus-visible {
+  outline: 2px solid var(--accent, #22d3ee);
+  outline-offset: 2px;
+}
+
+@layer base {
+  :root {
+    --font-vazir: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* پالت دارک/نایت — تنها منبع حقیقت رنگ‌های پایه */
+    --bg-night: #030712;
+    --bg-surface: #0b0f19;
+    --bg-elevated: #111827;
+    --border-night: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-muted: #94a3b8;
+    --accent: #22d3ee;
+
+    --bg-deep: #02050c;
+
+    /* به مرورگر اعلام می‌کند کل رابط تیره است تا کنترل‌های بومی
+       (اسکرول‌بار، فرم‌ها، منوی select، تقویم) تیره رندر شوند */
+    color-scheme: dark;
+    accent-color: var(--accent);
+
+    --scrollbar-track: var(--bg-night);
+    --scrollbar-thumb: #1e293b;
+    --scrollbar-thumb-hover: #334155;
+  }
+
+  /* ============================================================
+     تم روشن (Light)
+     به‌جای بازنویسی ۵۰۰+ کلاس، خودِ مقیاس رنگ اسلیت وارونه می‌شود
+     تا همه بخش‌های سایت یکجا و دقیق به حالت روشن بروند.
+     ============================================================ */
+  html.light {
+    color-scheme: light;
+
+    --bg-night: #f8fafc;
+    --bg-deep: #ffffff;
+    --bg-surface: #ffffff;
+    --bg-elevated: #f1f5f9;
+    --border-night: #e2e8f0;
+    --text-primary: #0f172b;
+    --text-muted: #475569;
+    --accent: #0891b2;
+
+    --scrollbar-track: #f1f5f9;
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-thumb-hover: #94a3b8;
+
+    /* وارونه‌سازی مقیاس اسلیت: تیره‌ترین ↔ روشن‌ترین */
+    --color-slate-950: #ffffff;
+    --color-slate-900: #f8fafc;
+    --color-slate-800: #e2e8f0;
+    --color-slate-700: #cbd5e1;
+    --color-slate-600: #94a3b8;
+    --color-slate-500: #64748b;
+    --color-slate-400: #475569;
+    --color-slate-300: #334155;
+    --color-slate-200: #1e293b;
+    --color-slate-100: #0f172b;
+    --color-slate-50: #020617;
+
+    /* تن‌های تیره رنگی (که به‌عنوان پس‌زمینه بج‌ها استفاده شده‌اند) روشن می‌شوند */
+    --color-cyan-950: #ecfeff;
+    --color-cyan-900: #cffafe;
+    --color-emerald-950: #ecfdf5;
+    --color-emerald-900: #d1fae5;
+    --color-indigo-950: #eef2ff;
+    --color-indigo-900: #e0e7ff;
+    --color-blue-950: #eff6ff;
+    --color-blue-900: #dbeafe;
+    --color-red-950: #fef2f2;
+    --color-rose-950: #fff1f2;
+    --color-amber-950: #fffbeb;
+
+    /* متن‌های روشنِ روی پس‌زمینه تیره، در تم روشن باید تیره شوند */
+    --color-cyan-300: #0e7490;
+    --color-cyan-400: #0891b2;
+    --color-cyan-200: #155e75;
+    --color-emerald-400: #047857;
+    --color-emerald-300: #065f46;
+    --color-indigo-400: #4f46e5;
+    --color-blue-400: #2563eb;
+    --color-white: #0f172b;
+  }
+
+  html.light body {
+    background-color: var(--bg-night);
+    color: var(--text-primary);
+  }
+
+  /* شبکه پس‌زمینه در تم روشن باید تیره‌ی کم‌رنگ باشد، نه سفید */
+  html.light .tech-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 43, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 43, 0.06) 1px, transparent 1px);
+  }
+
+  html.light ::placeholder {
+    color: #94a3b8;
+  }
+
+  html {
+    font-family: var(--font-vazir);
+    scroll-behavior: smooth;
+    direction: rtl;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-night);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--bg-night);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* هنگام کشیدن صفحه فراتر از انتها (overscroll) هم پس‌زمینه تیره بماند */
+  html,
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  /* کنترل‌های فرم: جلوگیری از رندر روشن پیش‌فرض مرورگر/سیستم‌عامل */
+  input,
+  textarea,
+  select,
+  button {
+    color-scheme: dark;
+    font-family: inherit;
+  }
+
+  /* منوی بازشوی select در ویندوز/لینوکس پیش‌فرض سفید است */
+  select option,
+  select optgroup {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+  }
+
+  /* پرکردن خودکار کروم پس‌زمینه زرد/سفید می‌گذارد */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--text-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-surface) inset;
+    caret-color: var(--text-primary);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  ::placeholder {
+    color: #64748b;
+    opacity: 1;
+  }
+
+  /* حالت فوکوس یکدست و سازگار با تم شب */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Background grid patterns */
+.tech-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.tech-grid-dots {
+  background-image: radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 35px -5px rgba(14, 165, 233, 0.35);
+}
+
+.glow-indigo {
+  box-shadow: 0 0 45px -8px rgba(99, 102, 241, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.35);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s ease-in-out;
+}
+
+.glass-panel-hover:hover {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Animation utilities */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+/* ============================================================
+   پس‌زمینه‌ی انیمیشنی هیرو — شفق رنگی (Aurora)، هاله‌ی نوری چرخان،
+   شبکه‌ی متحرک با موج نور، ستاره‌های چشمک‌زن و ذرات شناور.
+   همه انیمیشن‌ها CSS-only هستند؛ با prefers-reduced-motion
+   حرکت‌ها می‌ایستند ولی زیبایی بصری باقی می‌ماند.
+   ============================================================ */
+.hero-aurora {
+  position: absolute;
+  inset: -30%;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.hero-orb-1 {
+  width: 70rem;
+  height: 54rem;
+  left: -14%;
+  top: -34%;
+  background: radial-gradient(closest-side, rgba(34, 211, 238, 0.5), rgba(34, 211, 238, 0.14) 55%, transparent 74%);
+  animation: hero-drift-1 26s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  width: 62rem;
+  height: 50rem;
+  right: -16%;
+  top: -24%;
+  background: radial-gradient(closest-side, rgba(59, 130, 246, 0.48), rgba(59, 130, 246, 0.12) 55%, transparent 74%);
+  animation: hero-drift-2 32s ease-in-out infinite;
+}
+
+.hero-orb-3 {
+  width: 74rem;
+  height: 44rem;
+  left: 6%;
+  bottom: -36%;
+  background: radial-gradient(closest-side, rgba(99, 102, 241, 0.44), rgba(99, 102, 241, 0.12) 55%, transparent 74%);
+  animation: hero-drift-3 29s ease-in-out infinite;
+}
+
+.hero-orb-4 {
+  width: 28rem;
+  height: 28rem;
+  right: 24%;
+  top: 22%;
+  background: radial-gradient(closest-side, rgba(45, 212, 191, 0.38), transparent 72%);
+  animation: hero-drift-2 22s ease-in-out infinite reverse;
+}
+
+@keyframes hero-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(90px, 55px, 0) scale(1.14); }
+}
+
+@keyframes hero-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-100px, 50px, 0) scale(1.1); }
+}
+
+@keyframes hero-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(70px, -70px, 0) scale(0.9); }
+}
+
+/* هاله‌ی نوری مخروطی — نوری که به‌آرامی دور محور می‌چرخد */
+.hero-conic {
+  position: absolute;
+  width: 90rem;
+  height: 90rem;
+  left: 50%;
+  top: -22%;
+  transform: translateX(-50%);
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(34, 211, 238, 0.12) 55deg,
+    transparent 120deg,
+    rgba(99, 102, 241, 0.12) 210deg,
+    transparent 285deg,
+    rgba(45, 212, 191, 0.09) 340deg,
+    transparent 360deg
+  );
+  -webkit-mask-image: radial-gradient(closest-side, #000 32%, transparent 74%);
+  mask-image: radial-gradient(closest-side, #000 32%, transparent 74%);
+  animation: hero-conic-spin 70s linear infinite;
+}
+
+@keyframes hero-conic-spin {
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* شبکه‌ی تکنولوژی با حرکت آرام + محوشدگی لبه‌ها */
+.hero-grid-pan {
+  animation: hero-grid-pan 42s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 15%, #000 25%, transparent 82%);
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 15%, #000 25%, transparent 82%);
+}
+
+@keyframes hero-grid-pan {
+  from { background-position: 0 0; }
+  to { background-position: 72px 72px; }
+}
+
+/* موج نور مورب که روی شبکه حرکت می‌کند */
+.hero-grid-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 34%,
+    rgba(56, 189, 248, 0.16) 48%,
+    rgba(56, 189, 248, 0.05) 53%,
+    transparent 68%
+  );
+  background-size: 260% 100%;
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 15%, #000 25%, transparent 82%);
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 15%, #000 25%, transparent 82%);
+  animation: hero-sweep 12s ease-in-out infinite;
+}
+
+@keyframes hero-sweep {
+  0% { background-position: 220% 0; }
+  55% { background-position: -80% 0; }
+  100% { background-position: -80% 0; }
+}
+
+/* ستاره‌های چشمک‌زن */
+.hero-star {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(186, 230, 253, 0.95);
+  box-shadow: 0 0 9px rgba(125, 211, 252, 0.9);
+  opacity: 0.35;
+  animation-name: hero-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hero-twinkle {
+  0%, 100% { opacity: 0.12; transform: scale(0.75); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ذرات شناور نورانی */
+.hero-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(103, 232, 249, 0.95);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 1);
+  opacity: 0;
+  animation-name: hero-particle-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hero-particle-rise {
+  0% { transform: translateY(28px) scale(0.55); opacity: 0; }
+  15% { opacity: 1; }
+  78% { opacity: 0.5; }
+  100% { transform: translateY(-170px) scale(1.1); opacity: 0; }
+}
+
+/* درخشش متحرک روی کلمه‌ی گرادیانی تیتر */
+.hero-title-shine {
+  background-size: 200% 100%;
+  animation: hero-title-shine 9s ease-in-out infinite;
+}
+
+@keyframes hero-title-shine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* برق‌زنی ظریف روی دکمه‌های هیرو هنگام hover */
+.btn-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.8s ease;
+}
+
+.group:hover .btn-sheen,
+.group:focus-visible .btn-sheen {
+  transform: translateX(130%);
+}
+
+/* تم روشن: شفق‌ها ملایم‌تر دیده شوند */
+html.light .hero-aurora,
+html.light .hero-conic {
+  opacity: 0.55;
+}
+
+html.light .hero-star {
+  background: rgba(8, 145, 178, 0.8);
+  box-shadow: 0 0 8px rgba(8, 145, 178, 0.55);
+}
+
+html.light .hero-particle {
+  background: rgba(8, 145, 178, 0.75);
+  box-shadow: 0 0 12px rgba(8, 145, 178, 0.6);
+}
+
+/* احترام به کاهش حرکت سیستم‌عامل:
+   حرکت‌ها می‌ایستند، ولی نورها و ستاره‌ها به‌صورت ثابت باقی می‌مانند */
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb,
+  .hero-conic,
+  .hero-grid-pan,
+  .hero-grid-sweep,
+  .hero-star,
+  .hero-particle,
+  .hero-title-shine,
+  .btn-sheen {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-star {
+    opacity: 0.55;
+  }
+
+  .hero-particle {
+    opacity: 0.35;
+  }
+
+  .hero-grid-sweep {
+    background-position: 50% 0;
+  }
+}
+
+/* Scrollbar customization */
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* Firefox */
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Code and numbers font */
+.font-mono-num {
+  font-family: var(--font-mono);
+  direction: ltr;
+  /* از inline-block استفاده نمی‌کنیم چون روی عناصر flex/grid
+     چیدمان را خراب می‌کند؛ isolation جهت متن با unicode-bidi انجام می‌شود. */
+  unicode-bidi: isolate;
+}
+
+
+/* ============================================================
+   اسلایدرهای بازه (range) — استایل تیره در همه مرورگرها
+   ============================================================ */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--border-night);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: -0.275rem;
+  border-radius: 9999px;
+  background: var(--accent);
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--border-night);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 9999px;
+  background: var(--accent);
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+  cursor: pointer;
+}
+
+/* ============================================================
+   چاپ: صفحه سفید با متن خوانا (تم شب برای چاپ مناسب نیست)
+   ============================================================ */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+
+/* انتقال نرم هنگام جابه‌جایی بین تم شب و روز */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition,
+  html.theme-transition * {
+    transition: none !important;
+  }
+}

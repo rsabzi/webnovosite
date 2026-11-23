@@ -21,6 +21,8 @@ export const CATEGORY_LABELS_EN: Record<string, string> = {
   integration: "Integrations & APIs",
   ai: "AI & data processing",
   web: "Web & brand",
+  ecommerce: "E-commerce & online orders",
+  desktop: "Desktop apps",
   android: "Android apps",
 };
 
@@ -131,6 +133,206 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
       { label: "Pricing model", value: "Free, ad-free" },
     ],
     liveNote: "Submitted on Cafe Bazaar (under review) + separate tester release channel",
+  },
+  "choob-wood-studio": {
+    title: "Handmade Woodwork Shop — Storefront, Ordering and Admin Panel",
+    subtitle:
+      "Product configurator, live laser-engraving preview, real customer orders, order tracking and a panel that runs the workshop",
+    summary:
+      "A complete website for a real woodworking studio: the customer picks the wood species, dimensions (including fully custom sizes), finish and engraving, sees a live preview of the engraving on the wood and gets the price instantly. Orders are placed with a unique tracking code, and the owner manages products, prices, content and orders from a dedicated admin panel.",
+    challenge:
+      "Handmade workshops usually take orders through DMs and WhatsApp: prices are calculated by hand every time, orders get lost between dozens of chats, and customers never know where their order stands. Every wood price change means calling the designer.",
+    solution:
+      "The workshop's pricing model — wood coefficient, finish cost, dimension factor, gift packaging, shipping and free-shipping threshold — became a live pricing engine, so the customer sees a transparent price on the spot. The cart validates Iranian mobile numbers, applies percentage coupons and issues a unique tracking code; customers follow the status on a full timeline (placed → review → deposit → build → QC → shipped → delivered). On the owner's side, the panel covers a sales dashboard, products and woods and services, order status changes with history, printable invoices, CSV export, contact-form inbox, coupons and JSON backups. Technical SEO (Store/Product/FAQ structured data, canonical, sitemap) and accessibility (keyboard navigation, dialog semantics, prefers-reduced-motion) were built in from the start.",
+    highlights: [
+      "Customisation studio: wood, custom dimensions, finish and engraving with live preview and instant pricing",
+      "Cart with mobile validation, coupon codes, shipping cost and a free-shipping progress bar",
+      "Unique tracking code and a full order-status timeline for the customer",
+      "Full admin panel: orders, products, wood pricing, services, reviews, FAQ, coupons and site settings",
+      "Sales dashboard with status distribution, printable invoices and CSV export for accounting",
+      "Technical SEO and accessibility: structured data, sitemap, keyboard navigation, reduced-motion support",
+    ],
+    results: [
+      { label: "Custom-order pricing", value: "Instant and transparent" },
+      { label: "Customer order tracking", value: "Self-service with a tracking code" },
+      { label: "Changing products, prices and copy", value: "In the panel, no developer needed" },
+      { label: "Order intake", value: "No DMs or WhatsApp" },
+    ],
+  },
+  "abrsorati-store": {
+    title: "Abr Sorati Online Store",
+    subtitle:
+      "Catalogue, cart, coupons, order tracking and an admin panel — deployed on Netlify",
+    summary:
+      "An online store: a categorised catalogue with filters and search, product pages, a slide-over cart, a validated checkout form, percentage coupons, an order-tracking window and an admin panel for products, categories, coupons, orders and store settings.",
+    challenge:
+      "Small shops get stuck between Instagram and an off-the-shelf theme: orders arrive in DMs, stock and price drift apart, coupons are calculated by hand and customers have to message the shop to ask about their order. Customising a ready theme usually ends in code the shop team can never change.",
+    solution:
+      "The store was built with React and Vite, with every part written as a module instead of depending on a heavy theme: catalogue with category filters and search, product page with gallery and size selection, slide-over cart, checkout with name/mobile/address validation, percentage coupons with a minimum order amount, an order-tracking window and a wishlist. On the admin side, a panel manages products, categories, coupons, orders and settings, and order submission is handled by Netlify Functions with Blobs storage so orders are shared across devices. The whole path is deployed on Netlify.",
+    highlights: [
+      "Catalogue with categories, quick filters, search and product pages with galleries",
+      "Slide-over cart and a checkout form with name, mobile and address validation",
+      "Percentage coupons with a minimum order amount, applied automatically",
+      "Order-tracking window that shows the parcel status inside the site",
+      "Admin panel: products, categories, coupons, orders and store settings",
+      "Netlify deployment with serverless functions for order records",
+    ],
+    results: [
+      { label: "Order intake", value: "Through the site form, not DMs" },
+      { label: "Managing products and prices", value: "From the panel, no code" },
+      { label: "Coupons", value: "Automatic with minimum amount" },
+      { label: "Deployment and updates", value: "Netlify + order functions" },
+    ],
+    liveNote:
+      "The store is live and orders plus the admin panel work on the deployed version. Connecting a bank payment gateway is the next development step.",
+  },
+  "hamrah-ai-assistant": {
+    title: "Hamrah — Personal AI Work Assistant",
+    subtitle:
+      "From a natural request to executable steps: long-term memory, human approval and a Persian dashboard",
+    summary:
+      "A local-first AI assistant that takes a task in natural language, breaks it into executable steps and runs them in order. It keeps a vector long-term memory, pauses before any sensitive action and waits for approval, schedules the daily plan by itself and ships two independent skills — salon outreach and personal project management — all behind a Persian RTL dashboard.",
+    challenge:
+      "AI chat tools usually either have no memory or act without any control. Both break real work: an assistant must remember what you decided last week, and it must never send a message or change a record without permission.",
+    solution:
+      "The core is built on FastAPI: an LLM planner turns the task into a step path, and tools execute sequentially. An approval layer halts execution before any sensitive tool and resumes from the exact same point after confirmation. A vector memory with cosine search plus automatic storage of completed steps brings past work back as context. APScheduler runs recurring tasks daily, multiple model keys rotate automatically so one exhausted key never stalls the job, and every model call — including failed attempts — is logged. The interface is a dark, responsive Persian dashboard with a command view, global search, notifications and a floating glass chat panel with Persian voice input.",
+    highlights: [
+      "Natural request broken into executable steps with sequential tool runs",
+      "Approval layer: stop before sensitive actions, resume after confirmation",
+      "Long-term vector memory with semantic search and automatic result storage",
+      "Daily delivery plan: one task per day, morning reminder and evening report",
+      "Automatic key rotation across multiple model keys, no single point of failure",
+      "Persian RTL dashboard with floating chat panel and Persian voice input",
+    ],
+    results: [
+      { label: "Raw request to plan", value: "Automatic, in seconds" },
+      { label: "Memory of past work", value: "Long-term vectors, semantic search" },
+      { label: "Control before sensitive actions", value: "Human approval, then continue" },
+      { label: "Traceability", value: "Every model call and run is logged" },
+    ],
+    liveNote: "Runs locally (local-first); the images shown are real screenshots of the dashboard.",
+  },
+  "file-organizer-desktop": {
+    title: "AI File Organizer (Desktop App)",
+    subtitle:
+      "Live multi-folder watching, smart categorisation, SHA256 duplicate detection and safe rollback",
+    summary:
+      "A desktop app that watches several folders in real time, sorts files by type and configurable rules, finds duplicates by SHA256 hash and records every move so it can be rolled back exactly. Its live dashboard streams all events over WebSocket.",
+    challenge:
+      "Downloads and desktop folders become junk drawers within weeks. Existing tools either move files with no way back, or they touch code projects, node_modules and system files — which means breaking a project. Unattended automatic moves without rollback are a risk few people accept.",
+    solution:
+      "A FastAPI backend watches multiple folders recursively with watchdog and streams events to the dashboard over WebSocket. The rule engine is JSON-driven: extension, size, name pattern, date and MIME type. Duplicates are detected with SHA256 and resolved with three strategies (keep newest, keep largest, delete). Moves are transactional: collision-safe renaming, full history and rollback. A safety guard skips programming projects, dependency folders, hidden and temp files and installers by default; every move is written to a history log so it can be rolled back. The UI is Electron + React.",
+    highlights: [
+      "Live recursive watching of multiple folders via FastAPI and WebSocket",
+      "Rule engine: extension, size, name pattern, date and file type",
+      "SHA256 duplicate detection with three resolution strategies",
+      "Transactional moves with full rollback and collision-safe renaming",
+      "Default guard for code projects, dependency folders and system files",
+      "Activity logs, operation history and path settings in the desktop UI",
+    ],
+    results: [
+      { label: "File categorisation", value: "Automatic and instant" },
+      { label: "Duplicate files", value: "Detected by SHA256" },
+      { label: "Risk of wrong moves", value: "History + rollback" },
+      { label: "Code projects and system files", value: "Protected by default" },
+    ],
+    liveNote:
+      "The current version of the repository continues in github.com/rsabzi/porotofolio with the safety guard and professional settings.",
+  },
+  "telegram-member-bot": {
+    title: "Telegram Channel Member Export Bot",
+    subtitle:
+      "Resilient scanning with automatic resume, activity-based filtering and batch exports",
+    summary:
+      "A bot that scans the members of a Telegram channel and groups them by activity: active in the last three days (Recently), week, month and all members. Each group is exported separately, all groups can be generated at once, and an interrupted scan resumes where it stopped.",
+    challenge:
+      "Telegram does not let you simply pull a complete member list: rate limits, dropped connections and partial lists make manual scanning practically useless. Channel admins also cannot tell which member is genuinely active and which is just a number in a list.",
+    solution:
+      "The bot is built with Telethon and scans members through recursive search with rate-limit handling. Results are stored in a local database so an interrupted scan resumes from the same point instead of restarting. Each member's activity is bucketed into four ranges and a separate list is produced per bucket; exports are generated with pandas as CSV and Excel. Administration happens inside Telegram itself: an admin dashboard with slash commands to start a scan, pick a filter and fetch exports.",
+    highlights: [
+      "Recursive member scanning with Telegram rate-limit handling",
+      "Automatic resume of interrupted scans from the last checkpoint",
+      "Activity buckets: last three days (Recently), week, month and all members",
+      "CSV and Excel exports per bucket and a one-shot batch build",
+      "Admin dashboard inside Telegram with a command menu",
+      "Environment-based configuration, no credentials in code",
+    ],
+    results: [
+      { label: "Channel member scanning", value: "Automatic and resumable" },
+      { label: "Member segmentation", value: "By activity window" },
+      { label: "Export", value: "CSV and Excel, per bucket" },
+      { label: "Control", value: "From inside Telegram" },
+    ],
+  },
+  "wordpress-plugins": {
+    title: "Custom WordPress Plugins: Order Form and AI Assistant",
+    subtitle:
+      "A five-step device-request form plus an AI chatbot wired to a language model and a custom prompt",
+    summary:
+      "Two WordPress plugins written for real needs: a five-step device purchase request form that records orders in the dashboard, and a site AI assistant that answers with a custom prompt and files each conversation as a trackable request in the dashboard.",
+    challenge:
+      "WordPress sites usually run heavy off-the-shelf plugins: forms that do not match the real business flow, and chatbots that are nothing more than a widget where conversations are never stored. Leads get lost between email and the widget, and the sales team has no idea who asked what.",
+    solution:
+      "The form plugin follows standard WordPress structure (custom post type, admin layer, internationalisation and RTL support): a five-step validated form and order records in the WordPress dashboard with custom order statuses. The assistant plugin adds a REST endpoint for chat, a language-model integration, a prompt editable from the settings page, and turns each conversation into a request in the dashboard; every request has a status meta box and a conversation summary so follow-up is traceable. Input validation, sanitisation and capability checks are enforced throughout.",
+    highlights: [
+      "Five-step validated device request form with step-by-step validation",
+      "Order records in the WordPress dashboard with order meta and custom statuses",
+      "Chatbot wired to a language model with a custom prompt editable from settings",
+      "Conversations converted into trackable requests with summary and status",
+      "Standard WordPress structure: custom post type, REST, i18n and RTL",
+      "Validation, sanitisation and capability checks across every route",
+    ],
+    results: [
+      { label: "Customer request intake", value: "Structured, not in DMs" },
+      { label: "Order flow", value: "In the WordPress dashboard, with custom statuses" },
+      { label: "AI conversations", value: "Turned into trackable leads" },
+      { label: "Installation on WordPress sites", value: "No theme changes needed" },
+    ],
+    liveNote:
+      "Both plugins are published in the webnovo repository, and the repair-tracking variant lives in my-awesome-project.",
+  },
+  "lottery-bot": {
+    title: "Lottery system with a Telegram bot and admin panel",
+    subtitle: "Bot registration and deposits, payment review and lottery management",
+    summary: "A lottery management project with a Telegram bot, API and admin panel. The repository describes it as a foundation stage, with the data model and financial rules still awaiting approval.",
+    challenge: "Deposit registration and credit allocation need to prevent transaction reuse while allowing uncertain cases to be reviewed.",
+    solution: "An aiogram bot connects registration and deposit flows to a FastAPI API. Normal payment matching uses bank statements, while uncertain cases remain available for correction or administrator review. A Next.js panel supports management and follow-up.",
+    highlights: [
+      "Step-by-step Telegram registration and deposit submission",
+      "Deposit matching against Bank Saderat statements",
+      "Database constraints and atomic operations prevent duplicate transaction allocation",
+      "Exceptional manual review of payment evidence by an administrator",
+      "Web admin panel and code-delivery follow-up",
+    ],
+    results: [
+      { label: "Information collection", value: "Step-by-step bot flow" },
+      { label: "Payment review", value: "Bank matching and administrator review" },
+      { label: "Management", value: "Web panel" },
+      { label: "Status", value: "Foundation stage; financial rules await approval" },
+    ],
+    liveNote: "The repository is private; access is required to view the code.",
+  },
+  "channel-plans-bot": {
+    title: "Telegram channel access subscription bot",
+    subtitle: "Subscription orders, manual receipt review and channel access management",
+    summary: "An independent bot for selling Telegram channel access plans, collecting receipts, supporting administrator review and managing renewals and expiry.",
+    challenge: "Selling channel subscriptions requires order registration, receipt review, access issuance and tracking plan expiry.",
+    solution: "The aiogram bot collects orders and payment evidence. An administrator manually approves or rejects each receipt, and approval issues a single-use invite link. Scheduled services handle reminders and access removal after expiry, while a FastAPI dashboard connects to the same database.",
+    highlights: [
+      "Plan selection, order registration and image or PDF receipt submission",
+      "Manual receipt approval or rejection and single-use invite links",
+      "Subscription renewal and expiry reminders",
+      "Automatic access removal after expiry",
+      "Web dashboard and Telegram admin panel for orders and messages",
+      "Administrator audit log and CSV export",
+    ],
+    results: [
+      { label: "Orders and receipts", value: "Submitted in Telegram and reviewed by an administrator" },
+      { label: "Channel access", value: "Single-use invite link" },
+      { label: "Renewal and expiry", value: "Reminders and automatic access removal" },
+      { label: "Management", value: "Telegram panel and web dashboard" },
+    ],
+    liveNote: "The repository is private; access is required to view the code.",
   },
 };
 

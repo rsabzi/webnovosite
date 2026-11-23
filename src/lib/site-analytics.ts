@@ -33,6 +33,14 @@ export const PAGE_TITLES: Record<string, string> = {
   "/projects/marketplace-automation": "اتوماسیون دیجی‌کالا و ترب",
   "/projects/persian-receipt-ocr": "سیستم هوشمند OCR رسید بانکی",
   "/projects/webnovo-portfolio": "پرتفولیو و معماری نوین وب",
+  "/projects/lottery-bot": "سامانه قرعه‌کشی تلگرام",
+  "/projects/channel-plans-bot": "ربات فروش پلن کانال",
+  "/projects/choob-wood-studio": "سایت و پنل کارگاه چوب اُرسی",
+  "/projects/abrsorati-store": "فروشگاه اینترنتی ابر صورتی",
+  "/projects/hamrah-ai-assistant": "دستیار هوشمند همراه",
+  "/projects/file-organizer-desktop": "سازمان‌ده خودکار فایل‌ها",
+  "/projects/telegram-member-bot": "ربات استخراج اعضای کانال",
+  "/projects/wordpress-plugins": "افزونه‌های اختصاصی وردپرس",
 };
 
 export function getPageTitle(path: string): string {

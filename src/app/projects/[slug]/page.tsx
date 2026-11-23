@@ -239,8 +239,8 @@ export default async function ProjectPage({ params }: Params) {
                     <Image
                       src={item.image}
                       alt={item.alt}
-                      width={1600}
-                      height={1000}
+                      width={project.category === "android" ? 1080 : 1600}
+                      height={project.category === "android" ? 1920 : 1000}
                       sizes="(max-width: 1024px) 50vw, 320px"
                       className="w-full h-auto"
                     />

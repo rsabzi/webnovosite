@@ -25,23 +25,7 @@ import AutomationCheckCta from "@/components/AutomationCheckCta";
 import HeroActions from "@/components/HeroActions";
 import HeroBackdrop from "@/components/HeroBackdrop";
 import Image from "next/image";
-import { PROJECTS, type Project } from "@/data/projects";
-
-/** پروژه‌های شاخص صفحه اصلی — همان داده‌ی صفحه نمونه‌کارها */
-const HOME_CASES: Project[] = ["choob-wood-studio", "abrsorati-store", "hamrah-ai-assistant"]
-  .map((slug) => PROJECTS.find((p) => p.slug === slug))
-  .filter((p): p is Project => Boolean(p));
-
-const HOME_CASE_LABELS: Record<string, string> = {
-  web: "وب‌سایت",
-  ecommerce: "فروشگاه",
-  bots: "ربات",
-  ai: "هوش مصنوعی",
-  desktop: "اپلیکیشن",
-  android: "اندروید",
-  integration: "یکپارچه‌سازی",
-  dashboards: "داشبورد",
-};
+import { PROJECTS } from "@/data/projects";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.webnovo.ir";
 
@@ -632,9 +616,8 @@ export default function HomePage() {
                 ایده‌ها و فرایندهایی که به سیستم واقعی تبدیل شدند
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
-                سایت فروش دست‌سازه‌های چوبی با پنل مدیریت، فروشگاه اینترنتی با ثبت و پیگیری سفارش،
-                سامانه نوبت‌دهی سه‌کاناله، دستیار هوشمند با حافظه بلندمدت و افزونه‌های اختصاصی وردپرس —
-                هر کدام با لینک دمو یا کد قابل بررسی.
+                ربات فروش اشتراک با زرین‌پال، اجرای خودکار سیگنال ترید، داشبوردهای مدیریتی، ربات رصد قیمت
+                ترب و دیجی‌کالا، و تأیید فیش بانکی با هوش مصنوعی — همه تحویل‌شده و در حال کار.
               </p>
             </div>
             <Link
@@ -708,46 +691,121 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {HOME_CASES.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/projects/${p.slug}`}
-                className="group flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 transition-colors hover:border-cyan-700/60 sm:p-8"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="shrink-0 rounded-full border border-cyan-800/50 bg-cyan-950 px-2.5 py-1 text-xs font-bold text-cyan-300">
-                      {HOME_CASE_LABELS[p.category]}
-                    </span>
-                    <span className="truncate text-xs text-slate-400">{p.client}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-white transition-colors group-hover:text-cyan-300 sm:text-lg">
-                    {p.title}
-                  </h3>
-                  <p className="line-clamp-4 text-xs leading-relaxed text-slate-300 sm:text-sm">
-                    <strong>مسئله:</strong> {p.challenge}
-                  </p>
+            {/* کیس ۱ */}
+            <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full border border-cyan-800/50 bg-cyan-950 px-2.5 py-1 text-xs font-bold text-cyan-300">
+                    فروشگاه اینترنتی
+                  </span>
+                  <span className="text-xs text-slate-400">فروشگاه بازرگانی پارس</span>
                 </div>
+                <h3 className="text-base font-bold text-white sm:text-lg">
+                  رصد خودکار قیمت رقبا در ترب و به‌روزرسانی پنل فروشندگان
+                </h3>
+                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
+                  <strong>مسئله:</strong> تیم فروش قیمت‌ها را دستی تغییر می‌داد و همیشه دیرتر از رقیب
+                  به‌روز می‌شد؛ فروش کالای ناموجود هم پیش می‌آمد.
+                  <br />
+                  <strong>راه‌حل:</strong> ربات خودکار قیمت رقبا را در ترب پایش کرد و قیمت‌ها را با فرمول سود
+                  در پنل فروشندگان اعمال کرد.
+                </p>
+              </div>
 
-                <div className="space-y-2 border-t border-slate-800 pt-4">
-                  {p.results.slice(0, 3).map((r) => (
-                    <div key={r.label} className="flex items-center justify-between gap-3 text-xs">
-                      <span className="text-slate-400">{r.label}:</span>
-                      <span className="text-left font-bold text-cyan-400">{r.value}</span>
-                    </div>
-                  ))}
-                  <div className="flex items-center justify-between gap-3 pt-1 text-xs font-semibold text-cyan-400">
-                    <span>پرونده کامل پروژه</span>
-                    <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
-                  </div>
+              <div className="space-y-2 border-t border-slate-800 pt-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">به‌روزرسانی قیمت پنل:</span>
+                  <span className="font-bold text-emerald-400">خودکار بر اساس فرمول سود</span>
                 </div>
-              </Link>
-            ))}
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">زمان واکنش به تغییر قیمت:</span>
+                  <span className="font-bold text-cyan-400">از ساعت‌ها به چند ثانیه</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">پایش دستی روزانه:</span>
+                  <span className="font-bold text-white">سپرده‌شده به ربات زمان‌بندی‌شده</span>
+                </div>
+              </div>
+            </div>
+
+            {/* کیس ۲ */}
+            <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full border border-blue-800/50 bg-blue-950 px-2.5 py-1 text-xs font-bold text-blue-300">
+                    پخش و توزیع
+                  </span>
+                  <span className="text-xs text-slate-400">پخش سراسری زرین</span>
+                </div>
+                <h3 className="text-base font-bold text-white sm:text-lg">
+                  اتصال خودکار سفارش‌های سایت به سپیدار و حواله انبار
+                </h3>
+                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
+                  <strong>مسئله:</strong> سفارش‌های همکاران هر روز دستی در سپیدار ثبت می‌شد و ساعت‌ها وقت
+                  حسابداری را می‌گرفت؛ خطای ثبت فاکتور هم پیش می‌آمد.
+                  <br />
+                  <strong>راه‌حل:</strong> سفارش سایت مستقیم به فاکتور سپیدار و حواله انبار وصل شد؛ کسر
+                  موجودی و پیامک رهگیری هم خودکار شد.
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-slate-800 pt-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">ثبت دستی اقلام فاکتور:</span>
+                  <span className="font-bold text-emerald-400">حذف تایپ دستی با اتصال مستقیم</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">صدور فاکتور و حواله انبار:</span>
+                  <span className="font-bold text-cyan-400">خودکار پس از ثبت سفارش</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">اطلاع‌رسانی به همکاران:</span>
+                  <span className="font-bold text-white">ارسال خودکار کد رهگیری</span>
+                </div>
+              </div>
+            </div>
+
+            {/* کیس ۳ */}
+            <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full border border-indigo-800/50 bg-indigo-950 px-2.5 py-1 text-xs font-bold text-indigo-300">
+                    آموزش و خدمات
+                  </span>
+                  <span className="text-xs text-slate-400">آکادمی نوآوران</span>
+                </div>
+                <h3 className="text-base font-bold text-white sm:text-lg">
+                  ربات تلگرام و بله با تأیید فیش بانکی و ثبت در پنل فروش
+                </h3>
+                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
+                  <strong>مسئله:</strong> در ایام جشنواره انبوه رسید کارت‌به‌کارت می‌رسید و باز کردن دسترسی
+                  دوره‌ها ساعت‌ها طول می‌کشید؛ تشخیص رسید جعلی هم دشوار بود.
+                  <br />
+                  <strong>راه‌حل:</strong> ربات فیش را با موتور فارسی خواند، پرداخت را تأیید و دسترسی را در
+                  چند ثانیه فعال کرد.
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-slate-800 pt-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">دریافت و بررسی رسید:</span>
+                  <span className="font-bold text-emerald-400">خودکار و شبانه‌روزی</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">فیش‌های تکراری و مشکوک:</span>
+                  <span className="font-bold text-amber-400">کنترل خودکار + صف بازبینی</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">فعال‌سازی دسترسی دوره:</span>
+                  <span className="font-bold text-white">خودکار پس از تأیید پرداخت</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <p className="mt-6 text-[11px] leading-relaxed text-slate-500">
-            هر سه پروژه بالا واقعی و در حال استفاده‌اند و لینک دمو یا مخزن کدشان در پرونده‌ی هر پروژه آمده است؛
-            خروجی هر پروژه‌ی تازه به زیرساخت، قوانین پلتفرم‌های مقصد و دامنهٔ توافق‌شده در پروپوزال همان پروژه بستگی دارد.
+            سناریوهای بالا نمونه‌های اجرایی از پیاده‌سازی اتوماسیون هستند؛ خروجی دقیق هر پروژه به زیرساخت، قوانین
+            پلتفرم‌های مقصد و دامنهٔ توافق‌شده در پروپوزال همان پروژه بستگی دارد.
           </p>
         </div>
       </section>

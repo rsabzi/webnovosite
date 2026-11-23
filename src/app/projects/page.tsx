@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/projects" },
   title: "نمونه‌کارهای واقعی | ربات‌های تلگرام، داشبورد و اتوماسیون — نوین وب",
   description:
-    "نمونه‌کارهای واقعی نوین وب: سایت و پنل مدیریت کارگاه چوب، فروشگاه اینترنتی با ثبت و پیگیری سفارش، سامانه نوبت‌دهی تلگرام و وب و اندروید، دستیار هوشمند با حافظه بلندمدت، اپلیکیشن دسکتاپ سازمان‌ده فایل، ربات استخراج اعضای کانال تلگرام و افزونه‌های اختصاصی وردپرس — هر پروژه با لینک دمو یا کد.",
+    "نمونه‌کارها و محصولات داخلی نوین وب: ربات فروش اشتراک با زرین‌پال، اجرای خودکار سیگنال، CRM و اعتبارسنجی UID، داشبوردهای FastAPI و Next.js، اتوماسیون دیجی‌کالا و ترب، OCR فارسی و نوو، پخش‌کنندهٔ موسیقی آفلاین اندروید.",
 };
 
 export default function ProjectsPage() {
@@ -29,10 +29,11 @@ export default function ProjectsPage() {
             این‌ها ایده‌هایی هستند که تبدیل به سیستم واقعی شده‌اند
           </h1>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            هر نمونه‌کار از یک نیاز واقعی شروع شده: از فروشگاه و کارگاه دست‌ساز تا سامانه نوبت‌دهی،
-            فروشگاه اینترنتی، دستیار هوشمند، اپلیکیشن دسکتاپ و افزونه‌های وردپرس. برای هر پروژه، مسئلهٔ
-            اولیه، تصمیم‌های فنی، خروجی کار و <span className="font-semibold text-slate-200">لینک دموی
-            زنده یا مخزن کد</span> آمده است تا خودتان راستی‌آزمایی کنید.
+            هر نمونه‌کار از یک ایده یا فرصت واقعی شروع شده؛ از ربات‌های تلگرام و بله تا داشبوردهای مدیریتی،
+            اتصال به صرافی‌های <span className="font-mono-num">LBank</span> و{" "}
+            <span className="font-mono-num">XT</span>، درگاه زرین‌پال و مارکت‌پلیس‌های دیجی‌کالا و ترب.
+            محصولات داخلی مثل «نوو»، پخش‌کنندهٔ موسیقی آفلاین اندروید، هم در همین فهرست آمده‌اند.
+            برای هر پروژه، مسئلهٔ اولیه، راه‌حل فنی و نتیجهٔ کار را می‌بینید.
           </p>
         </div>
 
@@ -74,34 +75,12 @@ export default function ProjectsPage() {
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <Link
-                  href={`/projects/${featured.slug}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-sm font-bold hover:from-cyan-400 hover:to-indigo-500 transition-all"
-                >
-                  مطالعه کامل این پروژه <ArrowLeft className="w-4 h-4" />
-                </Link>
-                {featured.liveUrl && (
-                  <a
-                    href={featured.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-800/60 bg-emerald-950/50 text-emerald-300 text-xs font-semibold hover:border-emerald-500/70 transition-colors"
-                  >
-                    {featured.liveLabel ?? "دموی زنده"}
-                  </a>
-                )}
-                {featured.repoUrl && (
-                  <a
-                    href={featured.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900/80 text-slate-300 text-xs font-mono-num hover:border-cyan-700/70 hover:text-cyan-300 transition-colors"
-                  >
-                    {featured.repo}
-                  </a>
-                )}
-              </div>
+              <Link
+                href={`/projects/${featured.slug}`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-sm font-bold hover:from-cyan-400 hover:to-indigo-500 transition-all"
+              >
+                مطالعه کامل این پروژه <ArrowLeft className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </section>

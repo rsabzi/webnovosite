@@ -206,7 +206,7 @@ export const SERVICES: ServiceDef[] = [
     ],
     honestNote:
       "اتصال به دایرکت اینستاگرام به قوانین و دسترسی‌های رسمی خود اینستاگرام بستگی دارد؛ در جلسه‌ی بررسی، مسیر واقعی و کم‌ریسک را بر اساس نیاز شما پیشنهاد می‌دهیم و وعده‌ی غیرقابل‌اجرا نمی‌دهیم.",
-    relatedProjects: ["abrsorati-store"],
+    relatedProjects: ["receipt-ocr-verification"],
     relatedServices: ["telegram-bot", "crm", "ocr"],
     faq: [
       {
@@ -600,7 +600,7 @@ export const SERVICES: ServiceDef[] = [
         desc: "لیست محصولات، مشخصات و قیمت‌ها از سایت‌های هدف استخراج و مرتب تحویل داده می‌شود.",
       },
     ],
-    relatedProjects: [],
+    relatedProjects: ["marketplace-price-bot"],
     relatedServices: ["sales-bot", "ocr"],
     faq: [
       {
@@ -667,12 +667,12 @@ export const SERVICES: ServiceDef[] = [
         desc: "خواندن فیلدهای مشخص از اسناد تکراری و تحویل خروجی ساختاریافته برای مراحل بعدی.",
       },
     ],
-    relatedProjects: [],
+    relatedProjects: ["receipt-ocr-verification"],
     relatedServices: ["sales-bot", "ai-chatbot", "price-monitoring"],
     faq: [
       {
         q: "OCR فارسی هم پشتیبانی می‌شود؟",
-        a: "بله؛ تمرکز ما روی فیش‌ها و فاکتورهای فارسی است. برای هر پروژه، دقت را روی نمونه‌های واقعی خود شما می‌سنجیم و بعد از تأیید، سیستم را تحویل می‌دهیم.",
+        a: "بله؛ تمرکز اصلی ما روی فیش‌ها و فاکتورهای فارسی است و نمونه‌ی فعال آن در ربات‌های پرداختی‌مان کار می‌کند.",
       },
       {
         q: "دقت خواندن چقدر است؟",

@@ -12,7 +12,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.webnovo.ir";
 export const metadata: Metadata = {
   title: "Real Delivered Work | Telegram Bots, Dashboards & Automation — WebNovo",
   description:
-    "Real WebNovo projects: a woodworking studio storefront and admin panel, an online store with order tracking, a Telegram + web + Android booking platform, an AI assistant with long-term memory, a desktop file organizer, a Telegram member export bot and custom WordPress plugins — every project with a live link or public source.",
+    "WebNovo portfolio and in-house products: subscription sales bot with Zarinpal, automatic signal execution, CRM with UID verification, FastAPI & Next.js dashboards, Digikala & Torob automation, Persian OCR and Novo, an offline Android music player.",
   alternates: { canonical: `${SITE_URL}/en/projects` },
 };
 
@@ -33,11 +33,12 @@ export default function EnProjectsPage() {
             These are ideas that became real systems
           </h1>
           <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
-            Every project started from a real need: a workshop storefront, an online store, a
-            booking platform, an AI assistant, a desktop app and custom WordPress plugins. For each
-            project you see the original problem, the engineering decisions and the outcome — plus a{" "}
-            <span className="font-semibold text-slate-200">live demo or public repository</span> so
-            you can verify it yourself.
+            Every project started from a real idea or opportunity — from Telegram and Bale bots to
+            management dashboards, connections to the <span className="font-mono-num">LBank</span>{" "}
+            and <span className="font-mono-num">XT</span> exchanges, the Zarinpal payment gateway
+            and the Digikala and Torob marketplaces. In-house products like “Novo”, an offline
+            Android music player, are on this list too. For each project you see the original
+            problem, the technical solution and the result.
           </p>
         </div>
 
@@ -80,34 +81,12 @@ export default function EnProjectsPage() {
                     </span>
                   ))}
                 </div>
-<div className="flex flex-wrap items-center gap-3">
-                                <Link
+                <Link
                   href={`/en/projects/${featured.slug}`}
                   className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 px-5 py-2.5 text-sm font-bold text-white transition-all hover:from-cyan-400 hover:to-indigo-500"
                 >
                   Read the full case <ArrowRight className="h-4 w-4" />
                 </Link>
-                {featured.liveUrl && (
-                  <a
-                    href={featured.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-emerald-800/60 bg-emerald-950/50 px-4 py-2.5 text-xs font-semibold text-emerald-300 transition-colors hover:border-emerald-500/70"
-                  >
-                    {featured.liveLabel ?? "Live demo"}
-                  </a>
-                )}
-                {featured.repoUrl && (
-                  <a
-                    href={featured.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-2.5 font-mono-num text-xs text-slate-300 transition-colors hover:border-cyan-700/70 hover:text-cyan-300"
-                  >
-                    {featured.repo}
-                  </a>
-                )}
-              </div>
               </div>
             </div>
           </section>

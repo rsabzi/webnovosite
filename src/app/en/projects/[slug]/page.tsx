@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, ChevronRight, Home } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronRight, Code2, ExternalLink, Home } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 import { PROJECTS_EN, CATEGORY_LABELS_EN } from "@/data/projects.en";
 import { SERVICES_EN } from "@/data/services.en";
@@ -103,6 +103,32 @@ export default async function EnProjectPage({ params }: { params: Promise<{ slug
             </span>
           ))}
         </section>
+
+        {(fa.liveUrl || fa.repo) && (
+          <section className="flex flex-wrap items-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+            <span className="text-xs font-bold text-slate-200">See it for yourself:</span>
+            {fa.liveUrl && (
+              <a
+                href={fa.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-emerald-800/60 bg-emerald-950/60 px-3.5 py-1.5 text-xs font-semibold text-emerald-300 transition-colors hover:border-emerald-500/70"
+              >
+                <ExternalLink className="h-3.5 w-3.5" /> {fa.liveLabel ?? "Live demo"}
+              </a>
+            )}
+            {fa.repo && (
+              <a
+                href={fa.repoUrl ?? `https://${fa.repo}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-950/70 px-3.5 py-1.5 text-xs font-semibold text-slate-300 transition-colors hover:border-cyan-700/70 hover:text-cyan-300"
+              >
+                <Code2 className="h-3.5 w-3.5" /> {fa.repo}
+              </a>
+            )}
+          </section>
+        )}
 
         {fa.serviceLinks && fa.serviceLinks.length > 0 && (
           <section className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">

@@ -101,9 +101,24 @@ export default async function ProjectPage({ params }: Params) {
               </span>
             )}
             {project.repo && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 font-mono-num">
+              <a
+                href={project.repoUrl ?? `https://${project.repo}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-mono-num transition-colors hover:border-cyan-700/70 hover:text-cyan-300"
+              >
                 <Code2 className="w-3 h-3" /> {project.repo}
-              </span>
+              </a>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/60 border border-emerald-800/60 text-emerald-300 font-semibold transition-colors hover:border-emerald-500/70 hover:text-emerald-200"
+              >
+                <ExternalLink className="w-3 h-3" /> {project.liveLabel ?? "دموی زنده"}
+              </a>
             )}
           </div>
 
@@ -208,7 +223,7 @@ export default async function ProjectPage({ params }: Params) {
 
         {project.caseStudy && (
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-white">تصاویر نوو</h2>
+            <h2 className="text-xl font-bold text-white">تصاویر پروژه</h2>
             <p className="text-xs text-slate-400 leading-relaxed">
               برای دیدن تصویر کامل، روی آن بزنید.
             </p>
@@ -224,8 +239,8 @@ export default async function ProjectPage({ params }: Params) {
                     <Image
                       src={item.image}
                       alt={item.alt}
-                      width={1080}
-                      height={1920}
+                      width={1600}
+                      height={1000}
                       sizes="(max-width: 1024px) 50vw, 320px"
                       className="w-full h-auto"
                     />

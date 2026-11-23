@@ -25,8 +25,13 @@ import EnContactForm from "@/components/EnContactForm";
 import EnAutomationCheckCta from "@/components/EnAutomationCheckCta";
 import HeroActions from "@/components/HeroActions";
 import HeroBackdrop from "@/components/HeroBackdrop";
-import { PROJECTS } from "@/data/projects";
-import { PROJECTS_EN } from "@/data/projects.en";
+import { PROJECTS, type Project } from "@/data/projects";
+import { PROJECTS_EN, CATEGORY_LABELS_EN } from "@/data/projects.en";
+
+/** Featured home-page projects — same data as the work page */
+const HOME_CASES: Project[] = ["choob-wood-studio", "abrsorati-store", "hamrah-ai-assistant"]
+  .map((slug) => PROJECTS.find((p) => p.slug === slug))
+  .filter((p): p is Project => Boolean(p));
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.webnovo.ir";
 
@@ -590,9 +595,9 @@ export default function EnHome() {
                 Ideas and processes that became real systems
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
-                Subscription sales bot with Zarinpal, automatic trading signal execution, management
-                dashboards, Torob & Digikala price monitoring bots and AI bank-receipt
-                verification — all delivered and running.
+                A handmade-woodwork store with a full admin panel, an online store with order
+                tracking, a three-channel booking platform, an AI assistant with long-term memory and
+                custom WordPress plugins — each one backed by a live link or public source.
               </p>
             </div>
             <Link
@@ -668,119 +673,51 @@ export default function EnHome() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-cyan-800/50 bg-cyan-950 px-2.5 py-1 text-xs font-bold text-cyan-300">
-                    Online store
-                  </span>
-                  <span className="text-xs text-slate-400">Pars Trading Store</span>
-                </div>
-                <h3 className="text-base font-bold text-white sm:text-lg">
-                  Automated competitor price tracking on Torob &amp; seller panel updates
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
-                  <strong>Problem:</strong> the sales team updated prices manually and lagged hours
-                  behind competitor changes, while out-of-stock listings occasionally stayed active.
-                  <br />
-                  <strong>Solution:</strong> a scheduled bot monitored competitor prices on Torob and
-                  applied margin-bounded updates directly in the seller panel.
-                </p>
-              </div>
+            {HOME_CASES.map((p) => {
+              const en = PROJECTS_EN[p.slug];
+              if (!en) return null;
+              return (
+                <Link
+                  key={p.slug}
+                  href={`/en/projects/${p.slug}`}
+                  className="group flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 transition-colors hover:border-cyan-700/60 sm:p-8"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="shrink-0 rounded-full border border-cyan-800/50 bg-cyan-950 px-2.5 py-1 text-xs font-bold text-cyan-300">
+                        {CATEGORY_LABELS_EN[p.category] ?? p.category}
+                      </span>
+                      <span className="truncate text-xs text-slate-400">{p.client}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-white transition-colors group-hover:text-cyan-300 sm:text-lg">
+                      {en.title}
+                    </h3>
+                    <p className="line-clamp-4 text-xs leading-relaxed text-slate-300 sm:text-sm">
+                      <strong>Problem:</strong> {en.challenge}
+                    </p>
+                  </div>
 
-              <div className="space-y-2 border-t border-slate-800 pt-4">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Panel price updates:</span>
-                  <span className="font-bold text-emerald-400">Automated by margin formula</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Reaction to price changes:</span>
-                  <span className="font-bold text-cyan-400">Hours → seconds</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Daily manual monitoring:</span>
-                  <span className="font-bold text-white">Handled by scheduled bot</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-blue-800/50 bg-blue-950 px-2.5 py-1 text-xs font-bold text-blue-300">
-                    Distribution
-                  </span>
-                  <span className="text-xs text-slate-400">Zarrin Nationwide Distribution</span>
-                </div>
-                <h3 className="text-base font-bold text-white sm:text-lg">
-                  Direct sync from online orders to Sepidar invoices &amp; warehouse dispatch
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
-                  <strong>Problem:</strong> wholesale orders were re-typed manually into Sepidar each
-                  day, consuming accounting hours and causing item-entry mistakes.
-                  <br />
-                  <strong>Solution:</strong> online orders flow straight into Sepidar invoices and
-                  warehouse dispatches, with automatic stock updates and tracking SMS.
-                </p>
-              </div>
-
-              <div className="space-y-2 border-t border-slate-800 pt-4">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Manual invoice typing:</span>
-                  <span className="font-bold text-emerald-400">Eliminated via direct integration</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Invoice &amp; dispatch issuing:</span>
-                  <span className="font-bold text-cyan-400">Automated on order intake</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Partner notifications:</span>
-                  <span className="font-bold text-white">Automatic tracking SMS</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-indigo-800/50 bg-indigo-950 px-2.5 py-1 text-xs font-bold text-indigo-300">
-                    Education &amp; services
-                  </span>
-                  <span className="text-xs text-slate-400">Noavaran Academy</span>
-                </div>
-                <h3 className="text-base font-bold text-white sm:text-lg">
-                  Telegram &amp; Bale bot with bank-receipt verification and enrollment sync
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
-                  <strong>Problem:</strong> during promotional campaigns heavy waves of card-to-card
-                  receipts delayed course access for hours and complicated fake-slip detection.
-                  <br />
-                  <strong>Solution:</strong> a bot read receipts via Persian OCR, verified payments
-                  and activated course access within seconds while routing suspicious slips to review.
-                </p>
-              </div>
-
-              <div className="space-y-2 border-t border-slate-800 pt-4">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Receipt intake &amp; verification:</span>
-                  <span className="font-bold text-emerald-400">Automated 24/7</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Duplicate or suspicious slips:</span>
-                  <span className="font-bold text-amber-400">Auto-checked + review queue</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Course access activation:</span>
-                  <span className="font-bold text-white">Automated after payment check</span>
-                </div>
-              </div>
-            </div>
+                  <div className="space-y-2 border-t border-slate-800 pt-4">
+                    {en.results.slice(0, 3).map((r) => (
+                      <div key={r.label} className="flex items-center justify-between gap-3 text-xs">
+                        <span className="text-slate-400">{r.label}:</span>
+                        <span className="text-right font-bold text-cyan-400">{r.value}</span>
+                      </div>
+                    ))}
+                    <div className="flex items-center justify-between gap-3 pt-1 text-xs font-semibold text-cyan-400">
+                      <span>Open the full project file</span>
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
           <p className="mt-6 text-[11px] leading-relaxed text-slate-500">
-            The scenarios above represent operational automation setups; exact outcomes for each
-            engagement depend on your infrastructure, target-platform rules and the written scope of
-            that project.
+            All three projects above are real and in use, and each project file links to its live demo or
+            public repository; exact outcomes for a new engagement depend on your infrastructure,
+            target-platform rules and the written scope of that project.
           </p>
         </div>
       </section>

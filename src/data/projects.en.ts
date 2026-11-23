@@ -291,6 +291,49 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
     liveNote:
       "Both plugins are published in the webnovo repository, and the repair-tracking variant lives in my-awesome-project.",
   },
+  "lottery-bot": {
+    title: "Lottery system with a Telegram bot and admin panel",
+    subtitle: "Bot registration and deposits, payment review and lottery management",
+    summary: "A lottery management project with a Telegram bot, API and admin panel. The repository describes it as a foundation stage, with the data model and financial rules still awaiting approval.",
+    challenge: "Deposit registration and credit allocation need to prevent transaction reuse while allowing uncertain cases to be reviewed.",
+    solution: "An aiogram bot connects registration and deposit flows to a FastAPI API. Normal payment matching uses bank statements, while uncertain cases remain available for correction or administrator review. A Next.js panel supports management and follow-up.",
+    highlights: [
+      "Step-by-step Telegram registration and deposit submission",
+      "Deposit matching against Bank Saderat statements",
+      "Database constraints and atomic operations prevent duplicate transaction allocation",
+      "Exceptional manual review of payment evidence by an administrator",
+      "Web admin panel and code-delivery follow-up",
+    ],
+    results: [
+      { label: "Information collection", value: "Step-by-step bot flow" },
+      { label: "Payment review", value: "Bank matching and administrator review" },
+      { label: "Management", value: "Web panel" },
+      { label: "Status", value: "Foundation stage; financial rules await approval" },
+    ],
+    liveNote: "The repository is private; access is required to view the code.",
+  },
+  "channel-plans-bot": {
+    title: "Telegram channel access subscription bot",
+    subtitle: "Subscription orders, manual receipt review and channel access management",
+    summary: "An independent bot for selling Telegram channel access plans, collecting receipts, supporting administrator review and managing renewals and expiry.",
+    challenge: "Selling channel subscriptions requires order registration, receipt review, access issuance and tracking plan expiry.",
+    solution: "The aiogram bot collects orders and payment evidence. An administrator manually approves or rejects each receipt, and approval issues a single-use invite link. Scheduled services handle reminders and access removal after expiry, while a FastAPI dashboard connects to the same database.",
+    highlights: [
+      "Plan selection, order registration and image or PDF receipt submission",
+      "Manual receipt approval or rejection and single-use invite links",
+      "Subscription renewal and expiry reminders",
+      "Automatic access removal after expiry",
+      "Web dashboard and Telegram admin panel for orders and messages",
+      "Administrator audit log and CSV export",
+    ],
+    results: [
+      { label: "Orders and receipts", value: "Submitted in Telegram and reviewed by an administrator" },
+      { label: "Channel access", value: "Single-use invite link" },
+      { label: "Renewal and expiry", value: "Reminders and automatic access removal" },
+      { label: "Management", value: "Telegram panel and web dashboard" },
+    ],
+    liveNote: "The repository is private; access is required to view the code.",
+  },
 };
 
 export function getProjectEn(slug: string): ProjectEn | undefined {

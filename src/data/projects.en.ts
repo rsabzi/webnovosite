@@ -162,23 +162,23 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
   "abrsorati-store": {
     title: "Abr Sorati Online Store",
     subtitle:
-      "Catalogue, cart, coupons, order tracking and an admin panel — fully deployed on Netlify",
+      "Catalogue, cart, coupons, order tracking and an admin panel — deployed on Netlify",
     summary:
-      "A live online store: a categorised catalogue with filters and search, product pages, a slide-over cart, a validated checkout form, percentage coupons, self-service order tracking and an admin panel for products, categories, coupons, orders and store settings.",
+      "An online store: a categorised catalogue with filters and search, product pages, a slide-over cart, a validated checkout form, percentage coupons, an order-tracking window and an admin panel for products, categories, coupons, orders and store settings.",
     challenge:
       "Small shops get stuck between Instagram and an off-the-shelf theme: orders arrive in DMs, stock and price drift apart, coupons are calculated by hand and customers have to message the shop to ask about their order. Customising a ready theme usually ends in code the shop team can never change.",
     solution:
-      "The store was built with React and Vite, with every part written as a module instead of depending on a heavy theme: catalogue with category filters and search, product page with gallery and size selection, slide-over cart, checkout with name/mobile/address validation, percentage coupons with a minimum order amount, order tracking and a wishlist. On the admin side, a panel manages products, categories, coupons, orders and settings, and order submission is handled by Netlify Functions with Blobs storage so orders are shared across devices. The whole path is deployed on Netlify.",
+      "The store was built with React and Vite, with every part written as a module instead of depending on a heavy theme: catalogue with category filters and search, product page with gallery and size selection, slide-over cart, checkout with name/mobile/address validation, percentage coupons with a minimum order amount, an order-tracking window and a wishlist. On the admin side, a panel manages products, categories, coupons, orders and settings, and order submission is handled by Netlify Functions with Blobs storage so orders are shared across devices. The whole path is deployed on Netlify.",
     highlights: [
       "Catalogue with categories, quick filters, search and product pages with galleries",
       "Slide-over cart and a checkout form with name, mobile and address validation",
       "Percentage coupons with a minimum order amount, applied automatically",
-      "Self-service order tracking from inside the site",
+      "Order-tracking window that shows the parcel status inside the site",
       "Admin panel: products, categories, coupons, orders and store settings",
       "Netlify deployment with serverless functions for order records",
     ],
     results: [
-      { label: "Order intake and tracking", value: "Entirely in the site" },
+      { label: "Order intake", value: "Through the site form, not DMs" },
       { label: "Managing products and prices", value: "From the panel, no code" },
       { label: "Coupons", value: "Automatic with minimum amount" },
       { label: "Deployment and updates", value: "Netlify + order functions" },
@@ -221,19 +221,19 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
     challenge:
       "Downloads and desktop folders become junk drawers within weeks. Existing tools either move files with no way back, or they touch code projects, node_modules and system files — which means breaking a project. Unattended automatic moves without rollback are a risk few people accept.",
     solution:
-      "A FastAPI backend watches multiple folders recursively with watchdog and streams events to the dashboard over WebSocket. The rule engine is JSON-driven: extension, size, name pattern, date and MIME type. Duplicates are detected with SHA256 and resolved with three strategies (keep newest, keep largest, delete). Moves are transactional: collision-safe renaming, full history and rollback. A safety guard skips programming projects, dependency folders, hidden and temp files and installers by default, and a dry-run mode previews every change before it happens. The UI is Electron + React.",
+      "A FastAPI backend watches multiple folders recursively with watchdog and streams events to the dashboard over WebSocket. The rule engine is JSON-driven: extension, size, name pattern, date and MIME type. Duplicates are detected with SHA256 and resolved with three strategies (keep newest, keep largest, delete). Moves are transactional: collision-safe renaming, full history and rollback. A safety guard skips programming projects, dependency folders, hidden and temp files and installers by default; every move is written to a history log so it can be rolled back. The UI is Electron + React.",
     highlights: [
       "Live recursive watching of multiple folders via FastAPI and WebSocket",
       "Rule engine: extension, size, name pattern, date and file type",
       "SHA256 duplicate detection with three resolution strategies",
       "Transactional moves with full rollback and collision-safe renaming",
       "Default guard for code projects, dependency folders and system files",
-      "Dry-run mode, activity logs and professional path settings",
+      "Activity logs, operation history and path settings in the desktop UI",
     ],
     results: [
       { label: "File categorisation", value: "Automatic and instant" },
       { label: "Duplicate files", value: "Detected by SHA256" },
-      { label: "Risk of wrong moves", value: "Dry-run + rollback" },
+      { label: "Risk of wrong moves", value: "History + rollback" },
       { label: "Code projects and system files", value: "Protected by default" },
     ],
     liveNote:
@@ -244,17 +244,17 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
     subtitle:
       "Resilient scanning with automatic resume, activity-based filtering and batch exports",
     summary:
-      "A bot that scans the members of a Telegram channel and groups them by activity: active in the last 24 hours, week, month and long-inactive members. Each group is exported separately, all groups can be generated at once, and an interrupted scan resumes where it stopped.",
+      "A bot that scans the members of a Telegram channel and groups them by activity: active in the last three days (Recently), week, month and all members. Each group is exported separately, all groups can be generated at once, and an interrupted scan resumes where it stopped.",
     challenge:
       "Telegram does not let you simply pull a complete member list: rate limits, dropped connections and partial lists make manual scanning practically useless. Channel admins also cannot tell which member is genuinely active and which is just a number in a list.",
     solution:
-      "The bot is built with Telethon and scans members through recursive search with rate-limit handling. Results are stored in a local database so an interrupted scan resumes from the same point instead of restarting. Each member's activity is bucketed into four ranges and a separate list is produced per bucket; exports are generated with pandas as CSV and Excel. Administration happens inside Telegram itself: an admin dashboard with inline buttons to start a scan, pick a filter and fetch exports.",
+      "The bot is built with Telethon and scans members through recursive search with rate-limit handling. Results are stored in a local database so an interrupted scan resumes from the same point instead of restarting. Each member's activity is bucketed into four ranges and a separate list is produced per bucket; exports are generated with pandas as CSV and Excel. Administration happens inside Telegram itself: an admin dashboard with slash commands to start a scan, pick a filter and fetch exports.",
     highlights: [
       "Recursive member scanning with Telegram rate-limit handling",
       "Automatic resume of interrupted scans from the last checkpoint",
-      "Activity buckets: 24 hours, week, month and all members",
+      "Activity buckets: last three days (Recently), week, month and all members",
       "CSV and Excel exports per bucket and a one-shot batch build",
-      "Admin dashboard inside Telegram with inline buttons",
+      "Admin dashboard inside Telegram with a command menu",
       "Environment-based configuration, no credentials in code",
     ],
     results: [
@@ -267,16 +267,16 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
   "wordpress-plugins": {
     title: "Custom WordPress Plugins: Order Form and AI Assistant",
     subtitle:
-      "A five-step device-request form with tracking plus an AI chatbot wired to a language model and a custom prompt",
+      "A five-step device-request form plus an AI chatbot wired to a language model and a custom prompt",
     summary:
-      "Two WordPress plugins written for real needs: a five-step device purchase request form with order records and status tracking, and a site AI assistant that answers with a custom prompt and files each conversation as a trackable request in the dashboard.",
+      "Two WordPress plugins written for real needs: a five-step device purchase request form that records orders in the dashboard, and a site AI assistant that answers with a custom prompt and files each conversation as a trackable request in the dashboard.",
     challenge:
       "WordPress sites usually run heavy off-the-shelf plugins: forms that do not match the real business flow, and chatbots that are nothing more than a widget where conversations are never stored. Leads get lost between email and the widget, and the sales team has no idea who asked what.",
     solution:
-      "The form plugin follows standard WordPress structure (custom post type, admin layer, internationalisation and RTL support): a five-step validated form, order records in the dashboard, a tracking number and a status page. The assistant plugin adds a REST endpoint for chat, a language-model integration, a prompt editable from the settings page, and turns each conversation into a request in the dashboard; every request has a status meta box and a conversation summary so follow-up is traceable. Input validation, sanitisation and capability checks are enforced throughout.",
+      "The form plugin follows standard WordPress structure (custom post type, admin layer, internationalisation and RTL support): a five-step validated form and order records in the WordPress dashboard with custom order statuses. The assistant plugin adds a REST endpoint for chat, a language-model integration, a prompt editable from the settings page, and turns each conversation into a request in the dashboard; every request has a status meta box and a conversation summary so follow-up is traceable. Input validation, sanitisation and capability checks are enforced throughout.",
     highlights: [
       "Five-step validated device request form with step-by-step validation",
-      "Order records in the WordPress dashboard with status and tracking",
+      "Order records in the WordPress dashboard with order meta and custom statuses",
       "Chatbot wired to a language model with a custom prompt editable from settings",
       "Conversations converted into trackable requests with summary and status",
       "Standard WordPress structure: custom post type, REST, i18n and RTL",
@@ -284,7 +284,7 @@ export const PROJECTS_EN: Record<string, ProjectEn> = {
     ],
     results: [
       { label: "Customer request intake", value: "Structured, not in DMs" },
-      { label: "Status tracking", value: "Inside the site" },
+      { label: "Order flow", value: "In the WordPress dashboard, with custom statuses" },
       { label: "AI conversations", value: "Turned into trackable leads" },
       { label: "Installation on WordPress sites", value: "No theme changes needed" },
     ],
